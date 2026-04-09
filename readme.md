@@ -50,7 +50,7 @@ Praticar conceitos fundamentais de programação orientada a objetos, como:
 
 1. Clonar o repositório:
 ```
-
+    git clone https://github.com/aninha-jpg/cli-order-system.git
 ``` 
 
 2. Acesse a pasta do projeto:
