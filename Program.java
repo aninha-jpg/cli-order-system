@@ -21,10 +21,9 @@ public class Program {
             System.out.println("Enter Cliente Data: ");
             
             System.out.print("Name: ");
-            String name = sc.next();
-            sc.nextLine();
+            String name = sc.nextLine();
             System.out.print("Email: ");
-            String email = sc.next();
+            String email = sc.nextLine();
 
             System.out.print("Birthday Date (DD/MM/YYYY): ");
             Date date = sdf.parse(sc.next());
@@ -35,32 +34,27 @@ public class Program {
             System.out.print("Status: ");
             OrderStatus status = OrderStatus.valueOf(sc.next());
 
-            Order order = new Order(status, new Date());
-
-            order.addClient(client);
+            Order order = new Order(status, new Date(), client);
 
             System.out.print("How many items to this order?");
             int n = sc.nextInt();
-
-            Product product;
-            OrderItem item;
 
             for(int i = 0; i<n; i++){
                 System.out.println("Enter #" + (i+1) + " item data: ");
 
                 System.out.print("Product name: ");
-                String nameProduct = sc.next();
+                sc.nextLine();
+                String nameProduct = sc.nextLine();
                 System.out.print("Product price: ");
                 Double price = sc.nextDouble();
                 System.out.print("Quantity: ");
                 Integer quantity = sc.nextInt();
 
 
-                product = new Product(nameProduct, price);
+                Product product = new Product(nameProduct, price);
 
-                item = new OrderItem(quantity, price);
+                OrderItem item = new OrderItem(quantity, price, product);
 
-                item.addProduct(product);
                 order.addItems(item);
 
 

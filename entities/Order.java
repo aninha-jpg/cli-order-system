@@ -11,19 +11,19 @@ public class Order {
     
     private Date moment;
     private OrderStatus status;
+    private Client client;
 
     private List<OrderItem> items = new ArrayList<>();
 
-
-    private List<Client> clients = new ArrayList<>();
 
     public Order(){
 
     }
 
-    public Order(OrderStatus status, Date moment) {
+    public Order(OrderStatus status, Date moment, Client client) {
         this.status = status;
         this.moment = moment;
+        this.client = client;
     }
 
     public Date getMoment() {
@@ -38,14 +38,6 @@ public class Order {
         this.status = status;
     }
 
-    public List<OrderItem> getItems() {
-        return items;
-    }
-
-    public List<Client> getClients() {
-        return clients;
-    }
-
     public void addItems(OrderItem item){
         items.add(item);
     }
@@ -54,18 +46,18 @@ public class Order {
         items.remove(item);
     }
 
-    public void addClient(Client client){
-        clients.add(client);
+    public Client getClient() {
+        return client;
     }
 
-    public void removeClient(Client client){
-        clients.remove(client);
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Double totalPrice(){
         Double soma = 0.0;
         for(OrderItem i: items){
-            soma += (i.getPrice() * i.getQuantity());
+            soma += i.subTotal();
         }
         return soma;
     }
@@ -78,9 +70,8 @@ public class Order {
         sb.append(sdf.format(moment) + "\n");
         sb.append("Order Status: ");
         sb.append(status + "\n");
-        for(Client c: clients){
-            sb.append(c + "\n");
-        }
+        sb.append("Client: ");
+        sb.append(client + "\n");
         sb.append("Order Items: \n");
         for(OrderItem i: items){
             sb.append(i + "\n");
